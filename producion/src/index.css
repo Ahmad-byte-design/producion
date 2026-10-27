@@ -1,0 +1,133 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --canvas: #edefe9;
+  --surface: #f8f9f4;
+  --ink: #151b17;
+  --muted: #5c665f;
+  --rule: #c9d0c6;
+  --accent: #1f5f45;
+  --accent-ink: #f5f8f3;
+  --ochre: #936612;
+}
+
+.dark {
+  --canvas: #101512;
+  --surface: #171e19;
+  --ink: #ecefe9;
+  --muted: #98a39b;
+  --rule: #2b352e;
+  --accent: #7cc4a1;
+  --accent-ink: #0d1511;
+  --ochre: #d5a34d;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-ochre: var(--ochre);
+
+  --font-sans: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* Bookly home — a fixed, light-only product surface. */
+  --font-bookly:
+    'Inter', 'Noto Sans Arabic', ui-sans-serif, system-ui, sans-serif;
+  --color-bookly-mint: #e0fffe;
+  --color-bookly-ink: #102d32;
+  --color-bookly-teal: #11b5ae;
+  --color-bookly-rating: #0fbab2;
+  --color-bookly-body: #4b4646;
+  --color-bookly-field: #d9d9d9;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-ink antialiased;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+}
+
+/* Phone presentation: full-bleed on phones, a framed device on larger screens. */
+.bookly-stage {
+  background-color: var(--color-bookly-mint);
+}
+
+.bookly-screen {
+  font-family: var(--font-bookly);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bookly-screen :focus-visible {
+  outline: 2px solid var(--color-bookly-ink);
+  outline-offset: 3px;
+}
+
+.bookly-screen ::selection {
+  background: var(--color-bookly-teal);
+  color: var(--color-bookly-ink);
+}
+
+@media (min-width: 40rem) {
+  .bookly-stage {
+    background-color: #0c2429;
+    background-image:
+      radial-gradient(
+        120% 75% at 50% 0%,
+        rgb(17 181 174 / 0.24) 0%,
+        rgb(12 36 41 / 0) 62%
+      ),
+      radial-gradient(
+        55% 45% at 50% 100%,
+        rgb(224 255 254 / 0.09) 0%,
+        rgb(12 36 41 / 0) 70%
+      );
+  }
+}
+
+.bookly-panel {
+  animation: bookly-panel-in 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform-origin: top center;
+}
+
+@keyframes bookly-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bookly-panel {
+    animation: none;
+  }
+}
