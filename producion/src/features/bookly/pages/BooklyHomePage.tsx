@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { StatusBar } from '../components/StatusBar'
 import { AppHeader } from '../components/AppHeader'
 import { PopularSalons } from '../components/PopularSalons'
 import { SearchField } from '../components/SearchField'

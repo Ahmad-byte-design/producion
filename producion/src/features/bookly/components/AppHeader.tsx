@@ -54,15 +54,15 @@ export function AppHeader() {
     }
   }, [isOpen])
 
-  function togglePanel(trigger: HTMLButtonElement) {
-    if (isOpen) {
-      setIsOpen(false)
-      return
-    }
+  // function togglePanel(trigger: HTMLButtonElement) {
+  //   if (isOpen) {
+  //     setIsOpen(false)
+  //     return
+  //   }
 
-    triggerRef.current = trigger
-    setIsOpen(true)
-  }
+  //   triggerRef.current = trigger
+  //   setIsOpen(true)
+  // }
 
   return (
     <header className="relative z-30 flex h-[90px] shrink-0 items-center justify-between px-5">
